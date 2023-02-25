@@ -37,7 +37,7 @@ jobs:
       - name: fake noop deploy
         id: noop-deploy
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop == 'true' }} # only run if the trigger phrase is found and the branch-deploy step detected a noop deployment
-        run: ls -la
+        run: echo "I am doing a fake noop deploy"
 
       # This step writes the fake "noop" deployment output to a PR comment
       - name: fake noop output
@@ -49,3 +49,8 @@ jobs:
       - name: fake regular deploy
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }} # only run if the trigger phrase is found and the branch-deploy step detected a regular deployment
         run: echo "I am doing a fake regular deploy"
+
+            # This step writes the fake "noop" deployment output to a PR comment
+      - name: fake regular output
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop == 'true' }}
+        run: echo 'DEPLOY_MESSAGE=![TEST COMMENT](https://media.tenor.com/HpQzsDBu5QwAAAAC/goose-honk.gif)' >> $GITHUB_ENV
