@@ -42,7 +42,7 @@ jobs:
       # This step writes the fake "noop" deployment output to a PR comment
       - name: fake noop output
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop == 'true' }}
-        run: echo 'DEPLOY_MESSAGE=[TEST COMMENT](https://www.example.com/)' >> $GITHUB_ENV
+        run: echo 'DEPLOY_MESSAGE=![TEST COMMENT](https://i.ytimg.com/vi/_1GLCEPezxk/maxresdefault.jpg)' >> $GITHUB_ENV
 
       # Do some fake "regular" deployment logic here
       # conditionally run a regular deployment
